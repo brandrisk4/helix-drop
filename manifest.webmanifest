@@ -2,7 +2,7 @@
   "name": "Helix Drop",
   "short_name": "Helix Drop",
   "description": "Hold to smash through a spinning tower, dodge the dark floors, earn coins and unlock new balls.",
-  "id": "./",
+  "id": "/helix-drop",
   "start_url": "./",
   "scope": "./",
   "display": "fullscreen",

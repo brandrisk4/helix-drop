@@ -1,5 +1,6 @@
 // Helix Drop offline cache. Bump VERSION whenever any file changes.
-const VERSION = 'helix-drop-v1';
+const PREFIX = 'helix-drop-';
+const VERSION = PREFIX + 'v2';
 const ASSETS = [
   "./",
   "index.html",
@@ -23,8 +24,9 @@ self.addEventListener('install', (e) => {
 
 self.addEventListener('activate', (e) => {
   e.waitUntil(
+    // Other games share this website, so only clear this game's own old caches.
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => k.startsWith(PREFIX) && k !== VERSION).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
